@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: "$env.BRANCH_NAME", url "x"
+                git branch: "$env.BRANCH_NAME", url "https://github.com/xpecuchx/jenkins-practice"
             }
         }
     }
