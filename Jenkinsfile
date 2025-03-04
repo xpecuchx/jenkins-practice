@@ -38,10 +38,10 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh-aws', keyFileVariable: 'SSH_KEY')]){
                         sh """
                             ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${DEPLOY_USER}@${DEPLOY_SERVER} bash -c '
-                                docker pull ${DOCKER_IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_NUMBER}
-                                docker stop simple-nodejs || true
-                                docker rm simple-nodejs || true
-                                docker run -d --name simple-nodejs -p 3000:3000 ${DOCKER_IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_NUMBER}
+                                sudo docker pull ${DOCKER_IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_NUMBER}
+                                sudo docker stop simple-nodejs || true
+                                sudo docker rm simple-nodejs || true
+                                sudo docker run -d --name simple-nodejs -p 3000:3000 ${DOCKER_IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_NUMBER}
                             '
                         """
                     }
