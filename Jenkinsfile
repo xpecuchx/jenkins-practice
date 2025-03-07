@@ -33,6 +33,9 @@ pipeline {
         }
 
         stage('Deploy') {
+            when {
+                branch 'lab1'
+            }
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh-aws', keyFileVariable: 'SSH_KEY')]){
